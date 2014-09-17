@@ -1,0 +1,15 @@
+{
+  "name": "bone-cli",
+  "version": "0.0.0",
+  "description": "commander for bone",
+  "main": "index.js",
+  "scripts": {
+    "test": "make"
+  },
+  "keywords": [
+    "bone",
+    "bone-cli"
+  ],
+  "author": "wyicwx@gmail.com",
+  "license": "MIT"
+}
