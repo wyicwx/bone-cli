@@ -30,7 +30,6 @@ var bonefile = getBoneFile();
 if(bonefile) {
 	require(bonefile);
 	bone.setup(path.dirname(bonefile));
-	console.log(bone.fs);
 	// start resove arguments
 	if(process.argv.length > 2) {
 		bone.commander.parse(process.argv);
