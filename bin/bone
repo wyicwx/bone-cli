@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+'use strict';
+
+require('../index.js');
+
+var fs = require('fs');
+var path = require('path');
+var bone = require('bone');
+
+function getBoneFile() {
+	var commandDir = path.resolve('./'),
+		execuDir;
+
+	commandDir = commandDir.split(path.sep);
+	
+	while(commandDir.length > 1) {
+		execuDir = path.join(commandDir.join(path.sep), '.bonefile.js');
+
+		if(fs.existsSync(execuDir)) {
+			return execuDir;
+		}
+		commandDir.pop();
+	}
+	return false;
+}
+
+// use jt init command 
+var bonefile = getBoneFile();
+if(bonefile) {
+	require(bonefile);
+	bone.setup(path.dirname(bonefile));
+	console.log(bone.fs);
+	// start resove arguments
+	if(process.argv.length > 2) {
+		bone.commander.parse(process.argv);
+	} else {
+		bone.commander.help();
+	}
+} else {
+	console.log('  Fatal error: Unable to find .bonefile.js file.');
+	// console.log('');
+	// console.log('  If you\'re seeing this message, type "jt init" to initialize your project');
+}

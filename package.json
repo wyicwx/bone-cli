@@ -11,5 +11,8 @@
     "bone-cli"
   ],
   "author": "wyicwx@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~2.3.0"
+  }
 }
