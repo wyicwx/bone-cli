@@ -3,14 +3,14 @@ var path = require('path'),
 	resolve = require('resolve'),
 	Command = require('commander').Command;
 
-var bone = require('bone');
+function setupBone(base) {
+	var bone = resolve.sync('bone', {basedir: base});
+	bone = require(bone);
+	bone.commander = new Command('bone');
+	bone.commander.version(bone.version);
 
-var commander = bone.commander = new Command('bone');
+	require('./apps/builder.js')(bone);
+	return bone;
+}
 
-commander.version(bone.version);
-
-require('./apps/builder.js');
-// commander.option('-p, --peppers', 'Add peppers');
-
-// commander.help();
-// require('./')
+exports.setupBone = setupBone;
