@@ -25,8 +25,8 @@ function getBoneFile() {
 // use jt init command 
 var bonefile = getBoneFile();
 
-var bone = require('../index.js').setupBone(path.dirname(bonefile));
 if(bonefile) {
+	var bone = require('../index.js').setupBone(path.dirname(bonefile));
 	require(bonefile);
 	bone.setup(path.dirname(bonefile));
 	bone.commander.parse(process.argv);
