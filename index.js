@@ -14,7 +14,7 @@ function setupBone(base) {
 	bone.commander = new Command('bone');
 	bone.commander.version(bone.version);
 
-//	require('./apps/builder.js')(bone);
+	require('bone-build')(bone);
 	return bone;
 }
 

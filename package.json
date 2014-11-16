@@ -18,5 +18,9 @@
   "dependencies": {
     "commander": "~2.3.0",
     "resolve": "~1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wyicwx/bone-cli.git"
   }
 }
