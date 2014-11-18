@@ -5,8 +5,10 @@
 通过npm安装，这是全局模块，安装后可以在命令行中使用`bone`命令
 
 ```sh
-npm install -g bone-cli
+$ npm install -g bone-cli
 ```
+
+**注**：安装到全局需要使用sudo提权
 
 bone-cli会载入你项目目录下的[bone](https://github.com/wyicwx/bone)模块，并拓展bone对象的方法
 
