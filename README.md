@@ -8,7 +8,7 @@
 npm install -g bone-cli
 ```
 
-bone-cli会载入你项目目录下的[bone](https://github.com/wyicwx/bone)模块，并给bone对象上添加commander对象(commander对象是[Commander](https://github.com/tj/commander.js)的一个实例)
+bone-cli会载入你项目目录下的[bone](https://github.com/wyicwx/bone)模块，并拓展bone对象的方法
 
 ###开始
 
@@ -26,9 +26,18 @@ $ bone --help
 
 ###添加自己的命令
 
+通过bone-cli加载bone，会给bone对象添加一个commander对象该对象
+
+**注**：commander对象(commander对象是[Commander](https://github.com/tj/commander.js)的一个实例)，
+
 在bonefile.js文件内调用`bone.commander`的相应函数
 
 ###依赖模块
 
 + [bone-build](https://github.com/wyicwx/bone-build) 给bone-cli添加build命令的支持
+
+###可用模块
+
++ [bone-build](https://github.com/wyicwx/bone-build) 给bone-cli添加build命令的支持
++ [bone-connect](https://github.com/wyicwx/bone-connect) 创建使用bone的api的静态服务器
 
