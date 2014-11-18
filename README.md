@@ -45,10 +45,10 @@ bone.commander.command('custom')
 
 ###依赖模块
 
-+ [bone-build](https://github.com/wyicwx/bone-build) 给bone-cli添加build命令的支持
++ [bone-build](https://github.com/wyicwx/bone-build) 增加build命令支持
 
 ###可用模块
 
-+ [bone-build](https://github.com/wyicwx/bone-build) 给bone-cli添加build命令的支持
-+ [bone-connect](https://github.com/wyicwx/bone-connect) 创建使用bone的api的静态服务器
++ [bone-build](https://github.com/wyicwx/bone-build) 增加build命令支持
++ [bone-connect](https://github.com/wyicwx/bone-connect) 支持bone的api的静态服务器
 
