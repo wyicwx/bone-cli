@@ -26,7 +26,7 @@ $ bone --help
 
 ###添加自己的命令
 
-
+在bonefile.js文件内调用`bone.commander`的相应函数
 
 ###依赖模块
 
