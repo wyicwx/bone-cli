@@ -26,11 +26,22 @@ $ bone --help
 
 ###添加自己的命令
 
-通过bone-cli加载bone，会给bone对象添加一个commander对象该对象
+通过bone-cli加载bone，会给bone对象添加一个commander对象
 
 **注**：commander对象(commander对象是[Commander](https://github.com/tj/commander.js)的一个实例)，
 
-在bonefile.js文件内调用`bone.commander`的相应函数
+在bonefile.js文件或者独立的模块里内调用`bone.commander`来定义自己的命令
+
+```js
+var bone = require('bone');
+
+bone.commander.command('custom')
+	.version('0.0.1')
+	.option('-f, --foo', 'enable some foo')
+	.option('-b, --bar', 'enable some bar')
+	.option('-B, --baz', 'enable some baz');
+```
+通过`bone custom --help`查看自定义命令的帮助
 
 ###依赖模块
 
