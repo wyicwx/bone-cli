@@ -3,7 +3,7 @@ var path = require('path'),
 	resolve = require('resolve'),
 	Command = require('commander').Command;
 
-function setupBone(base) {
+exports.setupBone = function(base) {
 	try {
 		var bone = resolve.sync('bone', {basedir: base});
 		bone = require(bone);
@@ -11,11 +11,20 @@ function setupBone(base) {
 		console.log('Fatal error: Unable to find local bone.');
 		process.exit(0);
 	}
-	bone.commander = new Command('bone');
-	bone.commander.version(bone.version);
+	var commander = exports.commander = new Command('bone');
+	bone.cli = function(module, option) {
+		option || (option = {});
 
-	require('bone-build')(bone);
+		var command = function(name) {
+			return commander.command(option.alias || name);
+		};
+
+		module(command, bone);
+	};
+	
+	commander.version(bone.version);
+	var build = require('bone-build');
+	bone.cli(build());
+
 	return bone;
-}
-
-exports.setupBone = setupBone;
+};

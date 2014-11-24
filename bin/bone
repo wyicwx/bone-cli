@@ -22,16 +22,13 @@ function getBoneFile() {
 	return false;
 }
 
-// use jt init command 
 var bonefile = getBoneFile();
 
 if(bonefile) {
 	var bone = require('../index.js').setupBone(path.dirname(bonefile));
 	require(bonefile);
 	bone.setup(path.dirname(bonefile));
-	bone.commander.parse(process.argv);
+	require('../index.js').commander.parse(process.argv);
 } else {
 	console.log('  Fatal error: Unable to find bonefile.js file.');
-	// console.log('');
-	// console.log('  If you\'re seeing this message, type "jt init" to initialize your project');
 }
