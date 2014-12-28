@@ -1,7 +1,6 @@
 'use strict';
 var path = require('path'),
-	resolve = require('resolve'),
-	Command = require('commander').Command;
+	resolve = require('resolve');
 
 exports.setupBone = function(base) {
 	try {
@@ -11,20 +10,8 @@ exports.setupBone = function(base) {
 		console.log('Fatal error: Unable to find local bone.');
 		process.exit(0);
 	}
-	var commander = exports.commander = new Command('bone');
-	bone.cli = function(module, option) {
-		option || (option = {});
 
-		var command = function(name) {
-			return commander.command(option.alias || name);
-		};
-
-		module(command, bone);
-	};
+	exports.commander = require('./cli.js').setup(bone);
 	
-	commander.version(bone.version);
-	var build = require('bone-build');
-	bone.cli(build());
-
 	return bone;
 };
