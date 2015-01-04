@@ -55,6 +55,7 @@ exports.setup = function(bone) {
 
 		bone.cli(function(command) {
 			command(name)
+			.description('custom task')
 			.action(function() {
 				var index = 0;
 				function next() {
@@ -65,7 +66,9 @@ exports.setup = function(bone) {
 						child.stdout.on('data', function(data) {
 							console.log(data.toString());
 						});
-
+						child.stderr.on('data', function(data) {
+							console.log(data.toString());
+						})
 						child.on('exit', function(code) {
 							if(code == 0) {
 								next();
@@ -96,7 +99,6 @@ exports.setup = function(bone) {
 	commander.version(bone.version);
 	var build = require('bone-build');
 	bone.cli(build());
-
 
 	return commander;
 }
