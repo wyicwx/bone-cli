@@ -41,6 +41,11 @@ exports.setup = function(bone) {
 		var cmdParse = [];
 
 		cmds.forEach(function(option) {
+			if(typeof option === 'string') {
+				option = {
+					name: option
+				};
+			}
 			if(option.name) {
 				var input = [option.name];
 				for(var i in option.params) {
