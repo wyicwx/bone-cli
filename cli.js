@@ -66,14 +66,11 @@ exports.setup = function(bone) {
 				function next() {
 					var parse = cmdParse[index];
 					if(parse) {
-						var child = spawn('bone', parse);
-
-						child.stdout.on('data', function(data) {
-							console.log(data.toString());
-						});
-						child.stderr.on('data', function(data) {
-							console.log(data.toString());
-						})
+						var child = spawn('bone', parse, {stdio: [0]});
+						child.stdout.setEncoding = 'utf-8';
+						child.stderr.setEncoding = 'utf-8';
+						child.stdout.pipe(process.stdout, { end:true });
+						child.stderr.pipe(process.stderr, { end:true });
 						child.on('exit', function(code) {
 							if(code == 0) {
 								next();
