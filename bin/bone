@@ -28,7 +28,13 @@ if(bonefile) {
 	var bone = require('../index.js').setupBone(path.dirname(bonefile));
 	require(bonefile);
 	bone.setup(path.dirname(bonefile));
-	require('../index.js').commander.parse(process.argv);
+	var commander = require('../index.js').commander;
+
+	if(!process.argv.slice(2).length) {
+		commander.outputHelp();
+	} else {
+		commander.parse(process.argv);
+	}
 } else {
 	console.log('  Fatal error: Unable to find bonefile.js file.');
 }
