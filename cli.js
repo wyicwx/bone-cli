@@ -30,7 +30,7 @@ exports.setup = function(bone) {
 			commandList[cname] = subccommander;
 
 			if(option.always) {
-				commander[cname].events.push(option.always);
+				commanders[cname].events.push(option.always);
 			}
 
 			commander.on(cname, function() {
