@@ -1,6 +1,6 @@
 var Command = require('commander').Command;
 var spawn = require('child_process').spawn;
-var EventEmitter = require('events').EventEmitter;
+var os = require('os');
 
 exports.setup = function(bone) {
 	var commander = new Command('bone');
@@ -65,9 +65,14 @@ exports.setup = function(bone) {
 		var runQueue = [];
 		var run = function(cmd, args) {
 			return function(next) {
+				if(os.platform() == 'win32') {
+					args = ['/c', cmd].concat(args);
+					cmd = 'cmd';
+				}
 				var child = spawn(cmd, args, {
 					stdio: [0, 1, 2], 
-					env: bone.utils.extend({BONE_TASK: true}, process.env)
+					env: bone.utils.extend({BONE_TASK: true}, process.env),
+					encoding: 'utf8'
 				});
 				child.on('exit', function(code) {
 					if(code == 0) {
