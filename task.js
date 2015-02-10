@@ -14,7 +14,7 @@ function _cp(cmd, option, callback) {
 
 	if(cmd === 'bone') {
 		args = [];
-		env.BONE_ARGV = args.join(' ');
+		env.BONE_TASK_ARGV = args.join(' ');
 	}
 	if(os.platform() == 'win32') {
 		args = ['/c', cmd].concat(args);

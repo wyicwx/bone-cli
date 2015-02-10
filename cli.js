@@ -3,15 +3,55 @@ var spawn = require('child_process').spawn;
 var os = require('os');
 var task = require('./task');
 
+function parseArgv() {
+	var parsed = {};
+	var argv;
+
+	if(process.argv) {
+		argv = process.argv.slice(2);
+	} else {
+		argv = process.env.BONE_TASK_ARGV.split(' ');
+	}
+
+	if(!argv[0] || argv[0].indexOf('-') !== -1) {
+		return parsed;
+	}
+
+	parsed.command = argv.shift();
+	parsed.options = {_: []};
+
+	var prevOption;
+
+	argv.forEach(function(option) {
+		if(option.indexOf('-') === 0) {
+			prevOption = option.replace(/^--?/, '');
+			parsed.options[prevOption] = '';
+		} else {
+			if(prevOption) {
+				parsed.options[prevOption] = option;
+				prevOption = null;
+			} else {
+				parsed.options._.push(option);
+			}
+		}
+	});
+
+	return parsed;
+}
+
 exports.setup = function(bone) {
 	var commander = new Command('bone');
 	var commanders = commander.commanders = {};
+
+	// version
+	commander.version(bone.version);
 
 	commander.on('*', function(args) {
 		if(!task.run(args[0])) {
 			commander.outputHelp();
 		}
 	});
+
 
 	bone.cli = function(module, option) {
 		option || (option = {});
@@ -42,10 +82,14 @@ exports.setup = function(bone) {
 		return cmder;
 	};
 
+	// parse argv
+	bone.cli.argv = parseArgv();
+
+
+	// task support
 	task.setup(bone, commander, commanders);
-	commander.version(bone.version);
-	var build = require('bone-build');
-	bone.cli(build());
+	// build commander support
+	bone.cli(require('bone-build')());
 
 	return commander;
 };
