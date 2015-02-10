@@ -25,12 +25,15 @@ function getBoneFile() {
 var bonefile = getBoneFile();
 
 if(bonefile) {
-	var bone = require('../index.js').setupBone(path.dirname(bonefile));
+	var boneCli = require('../index.js');
+	var bone = boneCli.setupBone(path.dirname(bonefile));
 	require(bonefile);
 	bone.setup(path.dirname(bonefile));
-	var commander = require('../index.js').commander;
+	var commander = boneCli.commander;
 
-	if(!process.argv.slice(2).length) {
+	if(process.env.BONE_TASK) {
+		require('../task.js').runCP();
+	} else if(!process.argv.slice(2).length) {
 		commander.outputHelp();
 	} else {
 		commander.parse(process.argv);
