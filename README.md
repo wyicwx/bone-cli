@@ -39,8 +39,6 @@ bone.task('release', 'rm -rf ./dist/*', {
 
 上面的配置代码定义了一个release任务流，任务流执行的命令不仅限于Bone自身的命令和任务名，也可以是系统的命令
 
-通过执行
-
 ```sh
 $ bone release
 ```
