@@ -1,5 +1,5 @@
 # bone-cli
-> bone的命令行工具
+> Bone的命令行工具
 
 ###安装
 通过npm安装，这是全局模块，安装后可以在命令行中使用`bone`命令
@@ -18,12 +18,31 @@ bone-cli会载入你项目目录下的[bone](https://github.com/wyicwx/bone)模�
 ```js
 var bone = require('bone');
 ```
-**注意**：bonefile.js不需要调用`bone.setup`函数来设置bone根目录，bone-cli会使用bonefile.js所在的文件夹路径初始化bone
+**注意**：bonefile.js不需要调用`bone.setup()`来设置bone根目录，bone-cli会使用bonefile.js所在的文件夹路径初始化bone
 
 
 通过bone命令查看相应帮助
 ```sh
 $ bone --help
+```
+
+###定义任务流
+
+通过`bone.task()`定义任务流，用来将多个需要执行的命令连成一个任务流
+
+```js
+bone.task('release', 'rm -rf ./dist/*', {
+	exec: 'name',
+	params: '~/dist/*'
+});
+```
+
+上面的配置代码定义了一个release任务流，任务流执行的命令不仅限于Bone自身的命令和任务名，也可以是系统的命令
+
+通过执行
+
+```sh
+$ bone release
 ```
 
 ###添加自己的命令
