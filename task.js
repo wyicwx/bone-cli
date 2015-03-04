@@ -62,7 +62,7 @@ function _parse(work) {
 		if(!parsedWork.exec && parsedWork.name) {
 			parsedWork.exec = parsedWork.name;
 		} else if(!parsedWork.name && parsedWork.cli) {
-			parsedWork.exec = bone.cli(parsedWork.cli).cname;
+			parsedWork.exec = bone.cli(parsedWork.cli, {alias: 'BONE_TASK_CLI_'+bone.utils.uniqueId()}).cname;
 		}
 	}
 
