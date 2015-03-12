@@ -14,7 +14,6 @@ function _cp(cmd, option, callback) {
 
 	if(cmd === 'bone') {
 		args = [];
-		env.BONE_TASK_ARGV = args.join(' ');
 	}
 	if(os.platform() == 'win32') {
 		args = ['/c', cmd].concat(args);
@@ -57,7 +56,7 @@ function _parse(work) {
 		parsedWork.args = work.split(' ');
 		parsedWork.exec = parsedWork.args.shift();
 	} else {
-		work = bone.utils.pick(work, ['name', 'exec', 'params', 'always', 'cli']);
+		work = bone.utils.pick(work, ['name', 'exec', 'params', 'always', 'cli', 'beforeRun']);
 		bone.utils.extend(parsedWork, work);
 		if(!parsedWork.exec && parsedWork.name) {
 			parsedWork.exec = parsedWork.name;
@@ -120,7 +119,8 @@ Task.prototype.runAt = function(index) {
 			args: work.args,
 			env: {
 				BONE_TASK: this.name,
-				BONE_TASK_INDEX: index
+				BONE_TASK_INDEX: index,
+				BONE_TASK_MASTER_ARGV: JSON.stringify(bone.cli.argv)
 			}
 		}, function() {
 			self.runNext();
@@ -195,6 +195,8 @@ exports.run = function(task) {
 exports.runCP = function() {
 	var task = process.env.BONE_TASK;
 	var index = process.env.BONE_TASK_INDEX;
-
+console.log('task task');
+console.log(process.env);
+console.log(process.env.BONE_TASK_MASTER_ARGV);
 	Task.tasks[task].runAt(index);
 };

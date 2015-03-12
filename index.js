@@ -12,7 +12,7 @@ exports.setupBone = function(base) {
 		process.exit(0);
 	}
 
-	exports.commander = require('./cli.js').setup(bone);
+	exports.commander = require('./cli.js').setup(bone, base);
 	
 	return bone;
 };
