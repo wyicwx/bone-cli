@@ -195,8 +195,6 @@ exports.run = function(task) {
 exports.runCP = function() {
 	var task = process.env.BONE_TASK;
 	var index = process.env.BONE_TASK_INDEX;
-console.log('task task');
-console.log(process.env);
-console.log(process.env.BONE_TASK_MASTER_ARGV);
+
 	Task.tasks[task].runAt(index);
 };
