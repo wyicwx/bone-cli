@@ -25,19 +25,8 @@ function getBoneFile() {
 var bonefile = getBoneFile();
 
 if(bonefile) {
-	var boneCli = require('../index.js');
-	var bone = boneCli.setupBone(path.dirname(bonefile));
-	require(bonefile);
-	bone.setup(path.dirname(bonefile));
-	var commander = boneCli.commander;
-
-	if(process.env.BONE_TASK) {
-		require('../task.js').runCP();
-	} else if(!process.argv.slice(2).length) {
-		commander.outputHelp();
-	} else {
-		commander.parse(process.argv);
-	}
+	var boneCli = require('../lib/index.js');
+	boneCli.setupCLI(bonefile);
 } else {
 	console.log('  Fatal error: Unable to find bonefile.js file.');
 }

@@ -20,6 +20,11 @@
     "resolve": "~1.0.0",
     "bone-build": "~0.0.4"
   },
+  "config": {
+    "blanket": {
+      "pattern": "bone-cli/lib"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/wyicwx/bone-cli.git"
