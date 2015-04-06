@@ -1,11 +1,8 @@
 {
   "name": "bone-cli",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "description": "commander for bone",
   "main": "index.js",
-  "scripts": {
-    "test": "make"
-  },
   "keywords": [
     "bone",
     "bone-cli"
@@ -16,17 +13,15 @@
   "author": "wyicwx@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "bone-cli-build": "0.0.9",
     "commander": "~2.3.0",
-    "resolve": "~1.0.0",
-    "bone-build": "~0.0.4"
-  },
-  "config": {
-    "blanket": {
-      "pattern": "bone-cli/lib"
-    }
+    "resolve": "~1.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/wyicwx/bone-cli.git"
+  },
+  "devDependencies": {
+    "bone": "0.0.16"
   }
 }
