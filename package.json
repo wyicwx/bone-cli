@@ -1,6 +1,6 @@
 {
   "name": "bone-cli",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "commander for bone",
   "main": "index.js",
   "keywords": [
