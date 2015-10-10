@@ -1,6 +1,6 @@
 {
   "name": "bone-cli",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "commander for bone",
   "main": "index.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "author": "wyicwx@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "bone-cli-build": "~0.0.10",
+    "bone-cli-build": "~0.0.13",
     "commander": "~2.3.0",
     "resolve": "~1.0.0"
   },
