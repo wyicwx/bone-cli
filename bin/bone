@@ -28,5 +28,5 @@ if(bonefile) {
 	var boneCli = require('../lib/index.js');
 	boneCli.setupCLI(bonefile);
 } else {
-	console.log('Fatal error: Unable to find bonefile.js file.');
+	console.log('Fatal Error: unable to find bonefile.js file.');
 }

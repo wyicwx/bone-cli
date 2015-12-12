@@ -66,12 +66,8 @@ bone.cli(function(command, bone) {
 ```
 通过`bone custom --help`查看自定义命令的帮助
 
-###依赖模块
-
-+ [bone-build](https://github.com/wyicwx/bone-build) 增加build命令支持
-
 ###可用模块
 
 + [bone-build](https://github.com/wyicwx/bone-build) 增加build命令支持
-+ [bone-connect](https://github.com/wyicwx/bone-connect) 支持bone的api的静态服务器
-
++ [bone-cli-connect](https://github.com/wyicwx/bone-cli-connect) 支持bone的api的静态服务器
++ [bone-cli-proxy](https://github.com/wyicwx/bone-cli-proxy)支持bone的api的代理服务器
