@@ -47,14 +47,14 @@ $ bone release
 
 通过bone-cli加载bone，会给bone对象添加`bone.cli()`函数，参数接受传入一个函数，该函数接受两个参数，一个是command函数，执行后会返回一个commander对象，另一个参数是bone
 
-**注**：commander对象(commander对象是[Commander](https://github.com/tj/commander.js)的一个实例)，
+**注**：commander对象(commander对象是[Commander](https://github.com/tj/commander.js)的一个实例)
 
 在bonefile.js文件或者独立的模块里内调用`bone.cli()`来定义自己的命令
 
 ```js
 var bone = require('bone');
 
-bone.cli(function(command, bone) {
+bone.cli(function(command, bone, fs) {
 	var commander = command('custom');
 	
 	command('custom')
@@ -66,8 +66,23 @@ bone.cli(function(command, bone) {
 ```
 通过`bone custom --help`查看自定义命令的帮助
 
+###改变自定义命令的行为
+
+```js
+var connect = require('bone-cli-connect');
+var uglify = require('bone-act-uglify');
+
+bone.cli(connect(), {
+	act: uglify
+});
+
+```
+
+`act`参数传递处理器，处理器会改变该命令行的fs api的行为，所有读取的文件最后都会通过该处理器处理
+
+
 ###可用模块
 
 + [bone-build](https://github.com/wyicwx/bone-build) 增加build命令支持
 + [bone-cli-connect](https://github.com/wyicwx/bone-cli-connect) 支持bone的api的静态服务器
-+ [bone-cli-proxy](https://github.com/wyicwx/bone-cli-proxy)支持bone的api的代理服务器
++ [bone-cli-proxy](https://github.com/wyicwx/bone-cli-proxy) 支持bone的api的代理服务器
